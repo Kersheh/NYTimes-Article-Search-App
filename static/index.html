@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="static/img/favicon.ico">
+
+    <title>The New York Times - Article Search App</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="static/css/nytimes.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container" id="error" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Select a search category from the nav.">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <img src="static/img/nyt-logo.png" style="max-width:30px;height:auto;margin-top:-9px;">
+                    <span class="glyphicon glyphicon-search logo-glyph search-spin"></span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past first api search section -->
+                    <li class="hidden nav-top">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li class="nav-article dismiss-popover">
+                        <a class="page-scroll" id="article-link" href="#article"><strong>General</strong></a>
+                    </li>
+                    <li class="nav-world dismiss-popover">
+                        <a class="page-scroll" id="world-link" href="#world"><strong>World</strong></a>
+                    </li>
+                    <li class="nav-us dismiss-popover">
+                        <a class="page-scroll" id="us-link" href="#us"><strong>U.S.</strong></a>
+                    </li>
+                    <li class="nav-politics dismiss-popover">
+                        <a class="page-scroll" id="politics-link" href="#politics"><strong>Politics</strong></a>
+                    </li>
+                    <li class="nav-business dismiss-popover">
+                        <a class="page-scroll" id="business-link" href="#business"><strong>Business</strong></a>
+                    </li>
+                    <li class="nav-science dismiss-popover">
+                        <a class="page-scroll" id="science-link" href="#science"><strong>Science</strong></a>
+                    </li>
+                    <li class="nav-sports dismiss-popover">
+                        <a class="page-scroll" id="sports-link" href="#sports"><strong>Sports</strong></a>
+                    </li>
+                </ul>
+                <!-- Search bar -->
+                <div class="col-md-3 pull-right navbar-form" role="search-bar">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="request-search" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar-form -->
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="top-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img src="static/img/nyt-title.png" class="img-responsive title">
+                    <h3><strong>A</strong>rticle <strong>S</strong>earch <strong>A</strong>pp <span class="glyphicon glyphicon-search" style="font-size:75%;"></span></h3>
+                    <p class="lead"></br><strong>Welcome</strong>, select a category to begin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section id="article" class="article-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="article-header">
+                <h1>General Article Search</h1>
+                <p>Use the <strong>search bar</strong> to search by relevance.</p>
+            </div>
+
+            <div style="display: none;" id="article-results">
+                <!-- Carousel -->
+                <div id="carousel-article" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="article-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="article-content">
+                    </div>
+                </div>
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <a class="left carousel-control" href="#carousel-article" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-article" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- World Section -->
+    <section id="world" class="world-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="world-header">
+                <h1>World News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="world-results">
+                <!-- Carousel -->
+                <div id="carousel-world" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="world-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="world-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-world" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-world" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- U.S. Section -->
+    <section id="us" class="us-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="us-header">
+                <h1>U.S. News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="us-results">
+                <!-- Carousel -->
+                <div id="carousel-us" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="us-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="us-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-us" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-us" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Politics Section -->
+    <section id="politics" class="politics-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="politics-header">
+                <h1>Politics News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="politics-results">
+                <!-- Carousel -->
+                <div id="carousel-politics" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="politics-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="politics-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-politics" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-politics" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Politics Section -->
+    <section id="business" class="business-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="business-header">
+                <h1>Business News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="business-results">
+                <!-- Carousel -->
+                <div id="carousel-business" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="business-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="business-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-business" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-business" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section id="science" class="science-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="science-header">
+                <h1>Science News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="science-results">
+                <!-- Carousel -->
+                <div id="carousel-science" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="science-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="science-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-science" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-science" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports" class="sports-section">
+        <div class="content-container">
+            <div class="col-lg-12" id="sports-header">
+                <h1>Sports News Search</h1>
+                <p>Use the <strong>search bar</strong> to search by date.</p>
+            </div>
+
+            <div style="display: none;" id="sports-results">
+                <!-- Carousel -->
+                <div id="carousel-sports" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="sports-indicators">
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="sports-content">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-sports" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-sports" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right carousel-chevron" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- /.carousel -->
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="static/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="static/js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/scrolling-nav.js"></script>
+    <script src="static/js/jquery.scrollTo.min.js"></script>
+
+    <!-- NYTimes App -->
+    <script src="static/js/nytimes.js"></script>
+
+</body>
+
+</html>
